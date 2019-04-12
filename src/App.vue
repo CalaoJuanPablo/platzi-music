@@ -1,16 +1,15 @@
 <template lang="pug">
   div#app
-    img(alt="Vue logo" src="./assets/logo.png")
-    h1 {{ message }}
+    RegisterForm
 </template>
 
 <script>
+import RegisterForm from './components/RegisterForm.vue';
+
 export default {
   name: 'app',
-  data () {
-    return {
-      message: 'Hola mundo'
-    }
+  components: {
+    RegisterForm
   }
 }
 </script>
