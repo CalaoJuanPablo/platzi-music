@@ -5,29 +5,26 @@
         .container
           form(@submit="search")
             .field.has-addons
-              input.input.is-large(
+              input.input.is-medium(
                 type="text",
                 placeholder="Buscar canciones",
                 v-model="searchQuery")
-              button.button.is-info.is-large(
-                @click="search",
+              button.button.is-info.is-medium(
                 type="submit") Buscar
-              a.button.is-danger.is-large(@click="clearSearch") &times;
+              a.button.is-danger.is-medium(@click="clearSearch") &times;
+      .container
           p
             small {{ searchMessage }}
     section.section
       .container
         .columns
-          .column(v-for="track in tracks") {{ `${track.name} - ${track.artist}` }}
+          .column(v-for="track in tracks")
+            | {{ `${track.name} - ${track.artists[0].name}` }}
     
 </template>
 
 <script>
-const tracks = [
-  { name: 'Song 1', artist: 'artist 1'},
-  { name: 'Song 2', artist: 'artist 2'},
-  { name: 'Song 3', artist: 'artist 3'}
-];
+import trackService from './services/track'
 
 export default {
   name: 'app',
@@ -40,7 +37,11 @@ export default {
   methods: {
     search (e) {
       e.preventDefault()
-      this.tracks = tracks
+      if (!this.searchQuery) { return }
+      trackService.search(this.searchQuery)
+        .then(res => {
+          this.tracks = res.tracks.items
+        });
     },
     clearSearch () {
       this.searchQuery = ''
