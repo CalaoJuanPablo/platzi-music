@@ -1,5 +1,6 @@
 <template lang="pug">
   div#app
+    pm-header
     section.section
       nav.navbar.has-shadow
         .container
@@ -20,14 +21,20 @@
         .columns
           .column(v-for="track in tracks")
             | {{ `${track.name} - ${track.artists[0].name}` }}
-    
+    pm-footer
 </template>
 
 <script>
 import trackService from './services/track'
+import PmFooter from './components/layout/Footer.vue'
+import PmHeader from './components/layout/Header.vue'
 
 export default {
   name: 'app',
+  components: {
+    PmFooter,
+    PmHeader
+  },
   data () {
     return {
       searchQuery: '',
