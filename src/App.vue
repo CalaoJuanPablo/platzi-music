@@ -2,7 +2,7 @@
   div#app
     pm-header
     section.section
-      nav.navbar.has-shadow
+      nav.navbar
         .container
           form(@submit="search")
             .field.has-addons
@@ -21,7 +21,11 @@
       .container.results
         .columns.is-multiline
           .column.is-one-quarter(v-for="track in tracks")
-            pm-track(:track="track" :key="track.id")
+            pm-track(
+              :key="track.id"
+              :track="track"
+              @select="setSelectedTrack"
+              :class="{ 'is-active': track.id === selectedTrack }")
     pm-footer
 </template>
 
@@ -44,7 +48,8 @@ export default {
     return {
       searchQuery: '',
       tracks: [],
-      isLoading: false
+      isLoading: false,
+      selectedTrack: ''
     }
   },
   methods: {
@@ -60,6 +65,9 @@ export default {
     },
     clearSearch () {
       this.searchQuery = ''
+    },
+    setSelectedTrack (id) {
+      this.selectedTrack = id
     }
   },
   computed: {
@@ -70,6 +78,13 @@ export default {
 }
 </script>
 
-<style lang="sass">
-@import './scss/main.scss'
+<style lang="scss">
+@import './scss/main.scss';
+
+.results {
+  margin-top: 50px
+}
+.is-active {
+  border: 3px solid #23d169;
+}
 </style>
