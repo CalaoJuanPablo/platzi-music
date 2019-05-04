@@ -16,11 +16,12 @@
       .container
           p
             small {{ searchMessage }}
-    section.section
-      .container
-        .columns
-          .column(v-for="track in tracks")
-            | {{ `${track.name} - ${track.artists[0].name}` }}
+    pm-loader(v-show="isLoading")
+    section.section(v-show="!isLoading")
+      .container.results
+        .columns.is-multiline
+          .column.is-one-quarter(v-for="track in tracks")
+            pm-track(:track="track" :key="track.id")
     pm-footer
 </template>
 
@@ -28,26 +29,33 @@
 import trackService from './services/track'
 import PmFooter from './components/layout/Footer.vue'
 import PmHeader from './components/layout/Header.vue'
+import PmTrack from './components/Track.vue'
+import PmLoader from './components/shared/Loader.vue'
 
 export default {
   name: 'app',
   components: {
     PmFooter,
-    PmHeader
+    PmHeader,
+    PmTrack,
+    PmLoader
   },
   data () {
     return {
       searchQuery: '',
-      tracks: []
+      tracks: [],
+      isLoading: false
     }
   },
   methods: {
     search (e) {
       e.preventDefault()
       if (!this.searchQuery) { return }
+      this.isLoading = true
       trackService.search(this.searchQuery)
         .then(res => {
           this.tracks = res.tracks.items
+          this.isLoading = false
         });
     },
     clearSearch () {
