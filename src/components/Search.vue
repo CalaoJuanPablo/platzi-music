@@ -61,7 +61,8 @@ export default {
           this.showNotification = res.tracks.total === 0
           this.tracks = res.tracks.items
           this.isLoading = false
-        });
+        })
+        .catch(err => console.log(err))
     },
     clearSearch () {
       this.searchQuery = ''

@@ -1,12 +1,21 @@
 <template lang="pug">
   section.section.hero.is-success
     .hero-head
-      header.nav
+      header
         .container
-          .nav-left
-            .nav-item
-              strong Platzi Music
-          .nav-right.nav-menu
+          nav.navbar
+            .navbar-brand
+              .navbar-item
+                router-link(to="/")
+                  strong Platzi Music
+              a.navbar-burger.burger(role="button" data-target="navbarMenu")
+                span
+                span
+                span
+            .navbar-menu#navbarMenu
+              .navbar-end
+                router-link.navbar-item(to="/") Buscar
+                router-link.navbar-item(to="about") Nosotros
     .hero-body
       .container.has-text-centered
         h1.title Platzi Music
