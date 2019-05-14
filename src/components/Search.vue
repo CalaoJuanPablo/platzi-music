@@ -25,6 +25,7 @@
             pm-track(
               :key="track.id"
               :track="track"
+              v-blur="track.preview_url"
               @select="setSelectedTrack"
               :class="{ 'is-active': track.id === selectedTrack }")
 </template>

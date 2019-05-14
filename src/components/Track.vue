@@ -16,10 +16,13 @@
         small {{ track.duration_ms | ms-to-mm }}
         nav.level
           .level-left
-            a.level-item
-              span.icon.is-small(@click="selectTrack") &#9658;
-            a.level-item(:v-if="!$route.params.id")
-              span.button.is-small(@click="goToTrack(track.id)") Ir a la canción
+            button.button.is-primary.level-item(@click="selectTrack")
+              span.icon.is-small &#9658;
+            button.button.is-warning.level-item(
+              :v-if="!$route.params.id"
+              @click="goToTrack(track.id)"
+            )
+              span.is-small Ir a la canción
 </template>
 
 <script>
