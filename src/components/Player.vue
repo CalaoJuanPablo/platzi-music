@@ -6,7 +6,7 @@
       strong {{ track.name }} &nbsp;
       small {{ track.duration_ms | ms-to-mm }}
     p
-      audio(controls :src="track.preview_url")
+      audio(controls autoplay :src="track.preview_url")
 </template>
 
 <script>
