@@ -5,7 +5,7 @@
     section.section
       nav.navbar
         .container
-          form(@submit="search")
+          form.column.is-full(@submit="search")
             .field.has-addons
               input.input.is-medium(
                 type="text",
