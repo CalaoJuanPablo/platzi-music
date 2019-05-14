@@ -1,0 +1,21 @@
+const msToMm = {};
+
+function convertMsToMm(ms) {
+  function leftPad(number) {
+    const pad = '00';
+    return pad.substring(0, pad.length - number.length) + number;
+  }
+
+  const min = Math.floor(ms / 60000);
+  const sec = ((ms % 60000) / 1000).toFixed(0);
+
+  return `${min}:${leftPad(sec.toString())}`
+}
+
+msToMm.install = function(Vue) {
+  Vue.filter('ms-to-mm', (val) => {
+    return convertMsToMm(val)
+  })
+}
+
+export default msToMm
