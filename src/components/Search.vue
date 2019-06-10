@@ -1,7 +1,12 @@
 <template lang="pug">
   main
-    pm-notification(v-show="showNotification")
-      p(slot="notification-body") No se encontraron resultados
+    transition(name="move")
+      pm-notification(v-show="showNotification")
+        p(slot="notification-body") No se encontraron resultados
+    
+    transition(name="move")
+      pm-loader(v-show="isLoading")
+
     section.section
       nav.navbar
         .container
@@ -17,7 +22,6 @@
       .container
           p
             small {{ searchMessage }}
-    pm-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
       .container.results
         .columns.is-multiline
