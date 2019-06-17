@@ -1,7 +1,7 @@
 # Platzi Music Vue App
 This is the project of the [Vue Professional Course](https://platzi.com/clases/vuejs-profesional/) at [Platzi](https://platzi.com).
 
-### [Demo](https://todo-list-redux.netlify.com)
+### [Demo](https://platzi-music-vue.netlify.com)
 
 ## Project setup
 ```
